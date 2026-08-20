@@ -15,13 +15,13 @@ jobs:
             name: "Windows/Lib/X64/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -DOPUS_X86_PRESUME_AVX2=ON
+            args: -DOPUS_X86_PRESUME_AVX2=ON
           }
         - {
            name: "Windows/Lib/armv8/Release",
            os: windows-latest,
            config: Release,
-           args: -G "Visual Studio 17 2022" -A ARM64
+           args: -A ARM64
           }
         - {
             name: "Linux/Lib/X64/Release",
