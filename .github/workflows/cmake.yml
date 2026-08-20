@@ -250,6 +250,12 @@ jobs:
       - name: Build
         working-directory: ./build
         run: cmake --build . -j 2 --config ${{ matrix.config.config }} --target package
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.config.name }}
+          path: ${{ github.workspace }}/build/
+          if-no-files-found: warn
       - name: Test
         if: contains(matrix.config.name, 'Windows') && !contains(matrix.config.name, 'ARM') && !contains(matrix.config.name, 'Dll') ||
             contains(matrix.config.name, 'MacOSX') && !contains(matrix.config.name, 'ARM') && !contains(matrix.config.name, 'Dll') ||
