@@ -86,19 +86,19 @@ jobs:
             name: "Windows/Dll/X86/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A Win32 -DBUILD_SHARED_LIBS=ON
+            args: -A Win32 -DBUILD_SHARED_LIBS=ON
           }
         - {
             name: "Windows/Dll/X64/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A Win32 -DBUILD_SHARED_LIBS=ON
+            args: -A x64 -DBUILD_SHARED_LIBS=ON
           }
         - {
             name: "Windows/Dll/ARMv8/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A ARM64 -DBUILD_SHARED_LIBS=ON
+            args: -A ARM64 -DBUILD_SHARED_LIBS=ON
           }
         - {
             name: "Linux/So/X64/Release",
@@ -136,19 +136,19 @@ jobs:
             name: "Windows/Lib/X86/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A Win32
+            args: -A Win32
           }
         - {
             name: "Windows/Lib/X64/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A Win32
+            args: -A x64
           }
         - {
             name: "Windows/Lib/armv8/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A ARM64
+            args: -A ARM64
           }
         - {
             name: "Linux/Lib/X64/Release",
@@ -203,7 +203,7 @@ jobs:
             name: "AssertionsFuzz/Windows/Lib/X64/Release",
             os: windows-latest,
             config: Release,
-            args: -G "Visual Studio 17 2022" -A Win32 -DOPUS_ASSERTIONS=ON -DOPUS_FUZZING=ON
+            args: -DOPUS_ASSERTIONS=ON -DOPUS_FUZZING=ON
           }
         - {
             name: "AssertionsFuzz/Linux/Lib/X64/Release",
