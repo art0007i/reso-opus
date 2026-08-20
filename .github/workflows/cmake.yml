@@ -64,13 +64,12 @@ jobs:
             config: Release,
             args: "-DCMAKE_TOOLCHAIN_FILE=${ANDROID_HOME}/ndk/25.2.9519653/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a -DBUILD_SHARED_LIBS=ON"
           }
-        # TODO: Android ARMv7
-        # - {
-        #     name: "Android/So/ARMv7/Release",
-        #     os: ubuntu-latest,
-        #     config: Release,
-        #     args: "-DCMAKE_TOOLCHAIN_FILE=${ANDROID_HOME}/ndk/25.2.9519653/build/cmake/android.toolchain.cmake -DANDROID_ABI=armeabi-v7a -DBUILD_SHARED_LIBS=ON"
-        #   }
+        - {
+            name: "Android/So/ARMv7/Release",
+            os: ubuntu-latest,
+            config: Release,
+            args: "-DCMAKE_TOOLCHAIN_FILE=${ANDROID_HOME}/ndk/25.2.9519653/build/cmake/android.toolchain.cmake -DANDROID_ABI=armeabi-v7a -DBUILD_SHARED_LIBS=ON"
+          }
         - {
             name: "Android/So/X86/Release",
             os: ubuntu-latest,
@@ -176,13 +175,12 @@ jobs:
             config: Release,
             args: "-DCMAKE_TOOLCHAIN_FILE=${ANDROID_HOME}/ndk/25.2.9519653/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a"
           }
-        # TODO: Android ARMv7
-        # - {
-        #     name: "Android/Lib/ARMv7/Release",
-        #     os: ubuntu-latest,
-        #     config: Release,
-        #     args: "-DCMAKE_TOOLCHAIN_FILE=${ANDROID_HOME}/ndk/25.2.9519653/build/cmake/android.toolchain.cmake -DANDROID_ABI=armeabi-v7a"
-        #   }
+        - {
+            name: "Android/Lib/ARMv7/Release",
+            os: ubuntu-latest,
+            config: Release,
+            args: "-DCMAKE_TOOLCHAIN_FILE=${ANDROID_HOME}/ndk/25.2.9519653/build/cmake/android.toolchain.cmake -DANDROID_ABI=armeabi-v7a"
+          }
         - {
             name: "Android/Lib/X86/Release",
             os: ubuntu-latest,
@@ -224,6 +222,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+
+      - name: Setup Android SDK
+        if: contains(matrix.config.name, 'Android')
+        uses: android-actions/setup-android@v4
+      - name: Install Android NDK
+        if: contains(matrix.config.name, 'Android')
+        run: sdkmanager "ndk;25.2.9519653"
+
       - name: Install AutoConf, AutoMake and LibTool # Needed for autogen.sh
         if: matrix.config.os == 'macos-latest'
         run: brew install autoconf automake libtool
